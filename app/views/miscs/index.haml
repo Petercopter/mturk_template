@@ -14,20 +14,20 @@
         .row
           .col-xs-6
             %h3 Help Build The World's Best Cover Song Database
-            %p
+            %p.small
               Search the internet far and wide for the best and worst cover songs by major label and
-              independent artists from around the world. You are expected to use good judgement and submit high quality songs. Visit
+              independent artists from around the world. You are expected to use good judgement and submit high quality cover songs. Visit
               = link_to 'metamuse.org', 'http://metamuse.org'
               to get an idea of what you are looking for.
-              %p.small
-                %strong Example:
-                %br
-                Original song: Rolling Stones - Gimme Shelter
-                %br
-                Cover song: Sisters of Mercy - Gimme Shelter
+            %p.small
+              %strong Example:
+              %br
+              Original song: Rolling Stones - Gimme Shelter
+              %br
+              Cover song: Sisters of Mercy - Gimme Shelter
           .col-xs-3
             %h5
-              %span.glyphicon.glyphicon-thumbs-up.text-success
+              %span.glyphicon.glyphicon-thumbs-up.text-success <!-- -->
               Good
             %ul.small
               %li Cover songs by well known artists, of other well known artists.
@@ -38,10 +38,9 @@
                 %strong acceptable
                 live songs would be BBC Live Lounge recordings, B sides, deluxe edition tracks, etc.
 
-
           .col-xs-3
             %h5
-              %span.glyphicon.glyphicon-thumbs-down.text-danger
+              %span.glyphicon.glyphicon-thumbs-down.text-danger <!-- -->
               Bad
             %ul.small
               %li No live versions unless they are from an official album. No bootlegs, fan footage of live concerts, Youtube videos, radio station appearances, etc.
@@ -49,22 +48,19 @@
               %li
                 No duplicates. Please try and make sure the song doesn't already exist in the database on
                 = link_to 'metamuse.org', 'http://metamuse.org'
-
     .row
       .col-xs-8
         .panel.panel-default
           .panel-body
-
             .artists{ data: { category: 'cover' } }
-              %h3.cover-artists-header
-                %span.text-success.glyphicon.glyphicon-ok.hidden
+              %h4.cover-artists-header
+                %span.text-success.glyphicon.glyphicon-ok.hidden <!-- -->
                 Step 1
                 %small / Cover Song Artists
-              = render 'artist', category: 'cover'
+              = render 'artist', category: 'cover', disabled: false
             .song.cover
-              %h3
-                %span.text-success.glyphicon.glyphicon-ok.hidden
-                %span.text-danger.glyphicon.glyphicon-remove.hidden
+              %h4
+                %span.text-success.glyphicon.glyphicon-ok.hidden.song-ok <!-- -->
                 Step 2
                 %small / Cover Song
               = render 'song', category: 'cover'
@@ -72,12 +68,12 @@
         .panel.panel-default
           %ul.list-group
             %li.list-group-item
-              %h4 Step 1
+              %h5 Step 1
               %ul.small
                 %li Enter the name of the cover song artist. If the artist is available in the dropdown, select it.
                 %li Enter the Wikipedia link for the artist. If there is no link for the artist, the song cannot be saved.
             %li.list-group-item
-              %h4 Step 2
+              %h5 Step 2
               %ul.small
                 %li Enter the title of the cover song.
                 %li Select the genre of the song. If you're not sure, Rock and Pop are safe choices.
@@ -96,14 +92,14 @@
         .panel.panel-default
           .panel-body
             .artists{ data: { category: 'original' } }
-              %h3.original-artists-header
-                %span.text-success.glyphicon.glyphicon-ok.hidden
+              %h4.original-artists-header
+                %span.text-success.glyphicon.glyphicon-ok.hidden <!-- -->
                 Step 3
                 %small / Original Artist(s)
-              = render 'artist', category: 'original'
+              = render 'artist', category: 'original', disabled: false
             .song.original
-              %h3
-                %span.text-success.glyphicon.glyphicon-ok.hidden
+              %h4
+                %span.text-success.glyphicon.glyphicon-ok.hidden.song-ok <!-- -->
                 Step 4
                 %small / Original Song
               = render 'song', category: 'original'
@@ -112,10 +108,12 @@
         .panel.panel-default
           %ul.list-group
             %li.list-group-item
-              %h4 Step 3
-              %p something here
+              %h5 Step 3
+              %ul.small
+                %li Enter the name of the original song artist. If the artist is available in the dropdown, select it.
+                %li Enter the Wikipedia link for the artist. If there is no link for the artist, the song cannot be saved.
             %li.list-group-item
-              %h4 Step 4
-              %p something here
+              %h5 Step 4
+              %p.small Same guidelines as step 2.
 
-.hidden= render 'artist', category: nil
+.hidden= render 'artist', category: nil, disabled: true

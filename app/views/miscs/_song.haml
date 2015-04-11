@@ -7,18 +7,17 @@
           %span.required *
         - if category == 'cover'
           %label.text-warning.pull-right.hidden.cover-exists-warning
-            %span.glyphicon.glyphicon-warning-sign
+            %span.glyphicon.glyphicon-warning-sign <!-- -->
             may already exist
           %label.text-success.pull-right.hidden.cover-ok
-            %span.glyphicon.glyphicon-ok
-        = hidden_field_tag 'cover_song_id', nil, class: 'song-id' if category == 'cover'
+            %span.glyphicon.glyphicon-ok <!-- -->
         = text_field_tag "#{category}_song_title", nil, id: "#{category}-song-title", class: 'form-control input-sm song-title', required: true, disabled: true
     .col-xs-4
       .form-group
         %label
           Genre
           %span.required *
-        %select.form-control.input-sm{ class: 'song-genre-id', required: true }
+        %select.form-control.input-sm{ name: "#{category}_song_genre", class: 'song-genre-id', required: true }
           %option{ value: '' } Select One
           %option{value: '8'} Country/Folk
           %option{value: '2'} Dance/Electronic
@@ -33,14 +32,14 @@
         %label
           Album Title
           %span.required *
-        = text_field_tag "#{category}_album_title", nil, class: 'form-control input-sm song-album-title', required: true
+        = text_field_tag "#{category}_song_album_title", nil, class: 'form-control input-sm song-album-title', required: true
 
     .col-xs-3
       .form-group
         %label
           Release Year
           %span.required *
-        %select.form-control.input-sm{ class: 'song-release-year', required: true }
+        %select.form-control.input-sm{ name: "#{category}_song_release_year", class: 'song-release-year', required: true }
           %option{ value: '' } Select One
           %option{value: '2015'} 2015
           %option{value: '2014'} 2014

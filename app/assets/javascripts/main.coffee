@@ -16,16 +16,9 @@ $ ->
           $.getJSON '//metamuse.org/api/search.json?type=name&term=' + encodeURIComponent(request.term), (results) ->
             response results
         select: (event, ui) ->
-          $('.artist-id', artist).val ui.item.id
           $('.artist-wiki', artist).val ui.item.wiki
         focus: (event, ui) ->
-          $('.artist-id', artist).val ui.item.id
           $('.artist-wiki', artist).val ui.item.wiki
-
-    .on 'keyup', '.artist-name', ->
-      if $(this).val() == ''
-        artist = $(this).closest('.artist')
-        $('.artist-id', artist).val('').trigger('change')
 
     .on 'change', ':input', ->
       artists = $(this).closest('.artists')
@@ -40,7 +33,7 @@ $ ->
       category = $(this).closest('.artists').data('category')
       new_artist = $('.hidden .artist').clone()
       new_artist.find('.form-control').each ->
-        $(this).attr(name: category + $(this).attr('name'))
+        $(this).attr(name: category + $(this).attr('name'), disabled: false)
       new_artist.appendTo($(this).closest('.artists'))
       maintain_column_sync(category)
       false
@@ -55,9 +48,9 @@ $ ->
     .on 'keyup', ':input', ->
       song = $(this).closest('.song')
       if $('.song-title', song).val() != '' && $('.song-genre', song).val() != '' && $('.song-album-title', song).val() != '' && $('.song-release-year', song).val() != ''
-        $('.glyphicon-ok', song).removeClass('hidden')
+        $('.song-ok', song).removeClass('hidden')
       else
-        $('.glyphicon-ok', song).addClass('hidden')
+        $('.song-ok', song).addClass('hidden')
 
     .on 'keyup', '#cover-song-title', (event) ->
       search_str = $.trim($(this).val().toLowerCase())
@@ -91,10 +84,8 @@ $ ->
           $.getJSON '//metamuse.org/api/search.json?type=song&term=' + encodeURIComponent(artists + ' ' + request.term), (results) ->
             response results
         select: (event, ui) ->
-          $('.song-id', song).val ui.item.id
           $('.song-genre-id', song).val ui.item.genre_id
           $('.song-release-year', song).val ui.item.release_year
         focus: (event, ui) ->
-          $('.song-id', song).val ui.item.id
           $('.song-genre-id', song).val ui.item.genre_id
           $('.song-release-year', song).val ui.item.release_year
