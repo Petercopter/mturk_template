@@ -1,0 +1,121 @@
+%link{:href => 'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css', :rel => 'stylesheet'}/
+%link{:href => 'https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.3/themes/smoothness/jquery-ui.css', :rel => 'stylesheet'}/
+%script{:src => 'https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js'}
+%script{:src => 'https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.3/jquery-ui.min.js'}
+%script{:src => 'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js'}
+%script{:src => 'https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.0/js/standalone/selectize.min.js'}
+%script!= MturkTemplate::Application.assets.find_asset('main.coffee').body
+%style!= MturkTemplate::Application.assets.find_asset('main.scss').body
+
+.wrapper
+  .container
+    .panel.panel-default
+      .panel-body
+        .row
+          .col-xs-6
+            %h3 Help Build The World's Best Cover Song Database
+            %p
+              Search the internet far and wide for the best and worst cover songs by major label and
+              independent artists from around the world. You are expected to use good judgement and submit high quality songs. Visit
+              = link_to 'metamuse.org', 'http://metamuse.org'
+              to get an idea of what you are looking for.
+              %p.small
+                %strong Example:
+                %br
+                Original song: Rolling Stones - Gimme Shelter
+                %br
+                Cover song: Sisters of Mercy - Gimme Shelter
+          .col-xs-3
+            %h5
+              %span.glyphicon.glyphicon-thumbs-up.text-success
+              Good
+            %ul.small
+              %li Cover songs by well known artists, of other well known artists.
+              %li The original and the cover must both be in English.
+              %li The cover should be after 1950. The original can be from before 1950 if the original artist is known.
+              %li
+                An example of
+                %strong acceptable
+                live songs would be BBC Live Lounge recordings, B sides, deluxe edition tracks, etc.
+
+
+          .col-xs-3
+            %h5
+              %span.glyphicon.glyphicon-thumbs-down.text-danger
+              Bad
+            %ul.small
+              %li No live versions unless they are from an official album. No bootlegs, fan footage of live concerts, Youtube videos, radio station appearances, etc.
+              %li No mashups, adaptations, or parodies. Only regular cover songs.
+              %li
+                No duplicates. Please try and make sure the song doesn't already exist in the database on
+                = link_to 'metamuse.org', 'http://metamuse.org'
+
+    .row
+      .col-xs-8
+        .panel.panel-default
+          .panel-body
+
+            .artists{ data: { category: 'cover' } }
+              %h3.cover-artists-header
+                %span.text-success.glyphicon.glyphicon-ok.hidden
+                Step 1
+                %small / Cover Song Artists
+              = render 'artist', category: 'cover'
+            .song.cover
+              %h3
+                %span.text-success.glyphicon.glyphicon-ok.hidden
+                %span.text-danger.glyphicon.glyphicon-remove.hidden
+                Step 2
+                %small / Cover Song
+              = render 'song', category: 'cover'
+      .col-xs-4
+        .panel.panel-default
+          %ul.list-group
+            %li.list-group-item
+              %h4 Step 1
+              %ul.small
+                %li Enter the name of the cover song artist. If the artist is available in the dropdown, select it.
+                %li Enter the Wikipedia link for the artist. If there is no link for the artist, the song cannot be saved.
+            %li.list-group-item
+              %h4 Step 2
+              %ul.small
+                %li Enter the title of the cover song.
+                %li Select the genre of the song. If you're not sure, Rock and Pop are safe choices.
+                %li
+                  Enter the title of the album the song FIRST appears on.
+                  != "#{link_to 'Wikipedia', 'http://wikipedia.com'},"
+                  != "#{link_to 'Discogs', 'http://discogs.com'},"
+                  and
+                  = link_to 'MusicBrainz', 'http://musicbrainz.org'
+                  are great resources for this.
+                  %br
+                  If the song does not appear on an album, describe the medium. 'Fan club download', 'iTunes single', etc.
+
+    .row
+      .col-xs-8
+        .panel.panel-default
+          .panel-body
+            .artists{ data: { category: 'original' } }
+              %h3.original-artists-header
+                %span.text-success.glyphicon.glyphicon-ok.hidden
+                Step 3
+                %small / Original Artist(s)
+              = render 'artist', category: 'original'
+            .song.original
+              %h3
+                %span.text-success.glyphicon.glyphicon-ok.hidden
+                Step 4
+                %small / Original Song
+              = render 'song', category: 'original'
+
+      .col-xs-4
+        .panel.panel-default
+          %ul.list-group
+            %li.list-group-item
+              %h4 Step 3
+              %p something here
+            %li.list-group-item
+              %h4 Step 4
+              %p something here
+
+.hidden= render 'artist', category: nil

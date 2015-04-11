@@ -1,0 +1,22 @@
+.artist
+  .row
+    .col-xs-5
+      .form-group
+        %label
+          Artist Name
+          %span.artist-number
+          %span.required *
+        = hidden_field_tag "#{category}_artist_id_9", nil, class: 'artist-id'
+        = text_field_tag "#{category}_artist_name_9", nil, class: 'form-control input-sm artist-name', required: true
+
+    .col-xs-7
+      .form-group
+        %label
+          Wiki
+          %span.required *
+        .input-group
+          %span.input-group-addon http://en.wikipedia.org/wiki/
+          = text_field_tag "#{category}_artist_wiki_9", nil, class: 'form-control input-sm artist-wiki', required: true
+
+      = link_to 'add artist', '#', class: 'btn btn-xs btn-info pull-right add-artist'
+      = link_to 'remove', '#', class: 'btn btn-xs btn-link pull-right remove-artist'

@@ -1,0 +1,40 @@
+.wrapper {
+  background: #eee;
+}
+
+h3 {
+  .glyphicon {
+    font-size: 22px;
+  }
+}
+
+ul.small {
+  padding-left: 15px;
+}
+
+label {
+  .required {
+    color: #a80000;
+  }
+}
+
+.artist {
+  &:only-of-type {
+    .remove-artist {
+      display: none;
+    }
+  }
+  &:last-child {
+    .add-artist {
+      display: inline-block;
+    }
+  }
+  &:nth-child(5) {
+    .add-artist {
+      display: none;
+    }
+  }
+  .add-artist {
+    display: none;
+  }
+}
