@@ -8,7 +8,7 @@ $ ->
         $(this).attr(name: $(this).attr('name').slice(0, -1) + (index + 1))
 
   $('.artists')
-    .on 'focus', '.artist-name', (event) ->
+    .on 'keyup', '.artist-name', (event) ->
       artist = $(this).closest('.artist')
       $(this).autocomplete
         minLength: 2
@@ -20,7 +20,7 @@ $ ->
         focus: (event, ui) ->
           $('.artist-wiki', artist).val ui.item.wiki
 
-    .on 'change', ':input', ->
+    .on 'keyup', ':input', ->
       artists = $(this).closest('.artists')
       if $('.artist-name', artists).val() != '' && $('.artist-wiki', artists).val() != ''
         $('.glyphicon-ok', artists).removeClass('hidden')
